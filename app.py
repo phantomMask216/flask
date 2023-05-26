@@ -8,6 +8,4 @@ def hello_world():
 
 @app.route('/webhook',methods=["POST","GET"])
 def hook():
-    print(request)
-    res = request.get_json()
-    print(res)
+    print(request.date)
