@@ -35,6 +35,8 @@
 
     const message = await new Promise((resolve) => {
   ndef.onreading = (event) => resolve(event.message);
+  document.getElementById("p1").innerHTML = "Message has been read"+message;
+
 });
 
 document.getElementById("p1").innerHTML = "Message has been read"+message;
