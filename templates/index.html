@@ -26,20 +26,20 @@
       scanButton.addEventListener("click", async () => {
       console.log("User clicked scan button");
       document.getElementById("p1").innerHTML = "User clicked scan button";
-
-
-    const ndef = new NDEFReader();
-    await ndef.scan();
-    document.getElementById("p1").innerHTML = "Scan started";
-    console.log("> Scan started");
-
-    const message = await new Promise((resolve) => {
-  ndef.onreading = (event) => resolve(event.message);
-  document.getElementById("p1").innerHTML = "Message has been read"+message;
-
+      const ndef = new NDEFReader();
+      ndef.scan().then(() => {
+           document.getElementById("p1").innerHTML = "Scan started successfully.";
+           console.log("Scan started successfully.");
+      ndef.onreadingerror = () => {
+           document.getElementById("p1").innerHTML = "Cannot read data from the NFC tag. Try another one?";
+           console.log("Cannot read data from the NFC tag. Try another one?");};
+      ndef.onreading = event => {
+           document.getElementById("p1").innerHTML = "NDEF message read";
+           console.log("NDEF message read.");};
+}).catch(error => {
+  console.log(`Error! Scan failed to start: ${error}.`);
+  document.getElementById("p1").innerHTML = "Error! Scan failed to start:";
 });
-
-document.getElementById("p1").innerHTML = "Message has been read"+message;
   
 });
 
