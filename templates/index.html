@@ -41,9 +41,9 @@
     });
 
     ndef.addEventListener("reading", ({ message, serialNumber }) => {
+        document.getElementById("p1").innerHTML = "Scan value"+message;
         console.log(`> Serial Number: ${serialNumber}`);
         console.log(`> Records: (${message.records.length})`);
-         document.getElementById("p1").innerHTML = "Scan value"+message;
 
     });
   } catch (error) {
