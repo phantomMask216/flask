@@ -19,18 +19,20 @@
 <button id="makeReadOnlyButton">Make Read-Only</button>
 
 
-<h3 id="myh3id">Live Output</h3>
+<p id="p1">Hello World!</p>
 
     
       <script>
       scanButton.addEventListener("click", async () => {
-  console.log("User clicked scan button");
+      console.log("User clicked scan button");
+      document.getElementById("p1").innerHTML = "User clicked scan button";
+
 
   try {
     const ndef = new NDEFReader();
     await ndef.scan();
+    document.getElementById("p1").innerHTML = "Scan started";
     console.log("> Scan started");
-    document.getElementById("myh1id").innerHTML = "scanning"
 
     
 
@@ -41,7 +43,7 @@
     ndef.addEventListener("reading", ({ message, serialNumber }) => {
         console.log(`> Serial Number: ${serialNumber}`);
         console.log(`> Records: (${message.records.length})`);
-        document.getElementById("myh1id").innerHTML = "reading_value==   "+message
+         document.getElementById("p1").innerHTML = "Scan value"+message;
 
     });
   } catch (error) {
